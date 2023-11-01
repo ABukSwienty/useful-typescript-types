@@ -51,3 +51,8 @@ export type Tuple<T, N> = [T, N];
  * const vTuple: VariadicTuple<string, number, boolean> = ["foo", 1, true]
  */
 export type VariadicTuple<T extends any[]> = [...T];
+
+/**
+ * Nullable type
+ */
+export type Nullable<T> = T | null;
