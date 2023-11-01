@@ -1,0 +1,34 @@
+{
+  "name": "useful-typescript-types",
+  "version": "1.0.0",
+  "description": "",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "typescript",
+    "types",
+    "utility",
+    "useful"
+  ],
+  "author": {
+    "name": "Alexander Buk-Swienty",
+    "email": "alexanderbukswienty@gmail.com",
+    "url": "https://github.com/ABukSwienty"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "5.2.2"
+  }
+}

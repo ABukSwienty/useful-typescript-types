@@ -1,3 +1,6 @@
+# General
+./dist
+
 # Logs
 logs
 *.log
