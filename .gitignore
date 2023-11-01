@@ -1,5 +1,6 @@
 # General
 ./dist
+.DS_Store
 
 # Logs
 logs
