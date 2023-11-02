@@ -56,3 +56,32 @@ export type VariadicTuple<T extends any[]> = [...T];
  * Nullable type
  */
 export type Nullable<T> = T | null;
+
+/**
+ * Make all properties of an object required
+ */
+export type RequiredProperties<T> = T extends object
+  ? {
+      [K in keyof T]-?: T[K];
+    }
+  : never;
+
+/**
+ * Omit keys of an object with function values
+ */
+export type OmitFunctionKeys<T> = {
+  [K in keyof T]: T[K] extends Function ? never : K;
+}[keyof T];
+
+/**
+ * Pick Keys of an object that have function values
+ */
+export type PickFunctionKeys<T> = {
+  [K in keyof T]: T[K] extends Function ? K : never;
+}[keyof T];
+
+export type PickByValueType<T, ValueType> = {
+  [K in keyof T]: T[K] extends ValueType ? K : never;
+} extends { [_ in keyof T]: infer U }
+  ? { [K in U]: T[K] }
+  : never;
