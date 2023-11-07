@@ -80,8 +80,54 @@ export type PickFunctionKeys<T> = {
   [K in keyof T]: T[K] extends Function ? K : never;
 }[keyof T];
 
-export type PickByValueType<T, ValueType> = {
-  [K in keyof T]: T[K] extends ValueType ? K : never;
-} extends { [_ in keyof T]: infer U }
-  ? { [K in U]: T[K] }
-  : never;
+/**------------------------
+ * SYNTACTIC SUGAR TYPES 
+ *------------------------/
+
+/**
+ * Primitive types that can be compared
+ */
+export type Comparables = number | string | undefined | null | BigInteger;
+
+/**
+ * A function that returns T or void
+ *
+ * @example
+ * const myCallback: Callback<string> = () => "foo"
+ */
+export type Callback<T = void> = () => T;
+
+/**
+ * A function that returns T or void and takes Args as arguments
+ *
+ * @example
+ * const myCallback: CallbackWithArgs<string, [number, string]> = (num, str) => "foo"
+ */
+export type CallbackWithArgs<T = void, Args = any> = (...args: Args[]) => T;
+
+/**
+ * A result type that can be either a success or an error
+ *
+ * @example
+ * const myResult: Result<string, number> = { success: true, value: "foo" }
+ * const myResult: Result<string, number> = { success: false, error: "bar" }
+ */
+export type Result<Success, Error = string> =
+  | { success: true; value: Success }
+  | { success: false; error: Error };
+
+/**
+ * A dictionary type
+ *
+ * @example
+ * const myDict: Dictionary<string> = { foo: "bar" }
+ */
+export type Dictionary<T> = { [key: string]: T };
+
+/**
+ * For state management systems like Redux
+ *
+ * @example
+ * type Actions = Action<"INCREMENT", number> | Action<"DECREMENT", number>
+ */
+export type Action<Type, Payload> = { type: Type; payload: Payload };
