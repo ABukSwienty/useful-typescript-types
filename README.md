@@ -25,7 +25,6 @@ Types I'm tired of rewriting.
     - [Example](#example-4)
   - [`Result<Success, Error>`](#resultsuccess-error)
     - [Example](#example-5)
-  - [`Dictionary<T>`](#dictionaryt)
     - [Example](#example-6)
   - [`Action<Type, Payload>`](#actiontype-payload)
     - [Example](#example-7)
@@ -130,10 +129,6 @@ A result type that can be either a success or an error.
 const myResult: Result<string, number> = { success: true, value: "foo" };
 const myResult: Result<string, number> = { success: false, error: 101 };
 ```
-
-### `Dictionary<T>`
-
-A dictionary type mapping strings to type `T`.
 
 #### Example
 

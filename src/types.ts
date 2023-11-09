@@ -117,14 +117,6 @@ export type Result<Success, Error = string> =
   | { success: false; error: Error };
 
 /**
- * A dictionary type
- *
- * @example
- * const myDict: Dictionary<string> = { foo: "bar" }
- */
-export type Dictionary<T> = { [key: string]: T };
-
-/**
  * For state management systems like Redux
  *
  * @example
