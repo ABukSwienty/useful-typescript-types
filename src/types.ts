@@ -122,4 +122,24 @@ export type Result<Success, Error = string> =
  * @example
  * type Actions = Action<"INCREMENT", number> | Action<"DECREMENT", number>
  */
-export type Action<Type, Payload> = { type: Type; payload: Payload };
+export type Action<Type, Payload> = Payload extends undefined | void | null
+  ? {
+      type: Type;
+      payload?: Payload;
+    }
+  : { type: Type; payload: Payload };
+
+/**
+ * Make some properties of an object optional
+ *
+ * @example
+ *
+ * const myObj = {
+ *  foo: "hi",
+ *  bar: "hello"
+ * }
+ *
+ * type MyObj = PartialBy<typeof myObj, "foo"> // { foo?: string, bar: string }
+ */
+export type PartialBy<T extends object, K extends keyof T> = Omit<T, K> &
+  Partial<Pick<T, K>>;
