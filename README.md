@@ -16,7 +16,12 @@ Types I'm tired of rewriting.
   - [`Nullable<T>`](#nullablet)
   - [`RequiredProperties<T>`](#requiredpropertiest)
   - [`OmitFunctionKeys<T>`](#omitfunctionkeyst)
-  - [`PickFunctionKeys<T>`](#pickfunctionkeyst)
+  - [`PickKeysByValue`](#pickkeysbyvalue)
+    - [`PickFunctionKeys<T>`](#pickfunctionkeyst)
+    - [`PickObjectKeys<T>`](#pickobjectkeyst)
+    - [`PickArrayKeys<T>`](#pickarraykeyst)
+    - [`PickStringKeys<T>`](#pickstringkeyst)
+    - [`PickNumberKeys<T>`](#picknumberkeyst)
 - [Syntactic Sugar Types](#syntactic-sugar-types)
   - [`Comparables`](#comparables)
   - [`Callback<T>`](#callbackt)
@@ -88,9 +93,35 @@ Make all properties of an object required, removing optional modifiers.
 
 Omit keys of an object that have function values.
 
-### `PickFunctionKeys<T>`
+### `PickKeysByValue`
+
+Pick keys of an object that have `Type` values
+
+```typescript
+const obj = { foo: "bar", baz: 42 };
+
+type MyKeys = PickKeysByValue<typeof obj, string>; // "foo"
+```
+
+#### `PickFunctionKeys<T>`
 
 Pick keys of an object that have function values.
+
+#### `PickObjectKeys<T>`
+
+Pick keys of an object that have object values.
+
+#### `PickArrayKeys<T>`
+
+Pick keys of an object that have array values.
+
+#### `PickStringKeys<T>`
+
+Pick keys of an object that have string values.
+
+#### `PickNumberKeys<T>`
+
+Pick keys of an object that have number values.
 
 ## Syntactic Sugar Types
 

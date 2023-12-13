@@ -75,10 +75,57 @@ export type OmitFunctionKeys<T> = {
 
 /**
  * Pick Keys of an object that have function values
+ *
+ * Based on {@link PickKeysByValue}
  */
-export type PickFunctionKeys<T> = {
-  [K in keyof T]: T[K] extends Function ? K : never;
+export type PickFunctionKeys<T> = PickKeysByValue<T, Function>;
+
+/**
+ * Pick Keys of an object that have string values
+ *
+ * Based on {@link PickKeysByValue}
+ */
+export type PickStringKeys<T> = PickKeysByValue<T, string>;
+
+/**
+ * Pick Keys of an object that have number values
+ *
+ * Based on {@link PickKeysByValue}
+ */
+export type PickNumberKeys<T> = PickKeysByValue<T, number>;
+
+/**
+ * Pick Keys of an object that have object values
+ *
+ * Based on {@link PickKeysByValue}
+ */
+export type PickObjectKeys<T> = PickKeysByValue<T, Object>;
+
+/**
+ * Pick Keys of an object that have array values
+ *
+ * Based on {@link PickKeysByValue}
+ */
+export type PickArrayKeys<T> = PickKeysByValue<T, Array<any>>;
+
+/**
+ * Pick Keys of an object that have `Type` values
+ *
+ * @example
+ *
+ * const obj = { foo: "bar", baz: 42 };
+ * type MyKeys = PickKeysByValue<typeof obj, string> // "foo"
+ */
+export type PickKeysByValue<T, Type> = {
+  [K in keyof T]: T[K] extends Type ? K : never;
 }[keyof T];
+
+/**
+ * Remove readonly modifier from all properties of an object
+ */
+export type Mutable<T> = {
+  -readonly [P in keyof T]: T[P];
+};
 
 /**------------------------
  * SYNTACTIC SUGAR TYPES 
