@@ -18,6 +18,56 @@ export type ObjectPath<T> = T extends object
   : never;
 
 /**
+ * Get the path keys of an object that __contains__ a certain key.
+ *
+ * @example
+ * const myObj = {
+ *  foo: {
+ *   bar: {
+ *     baz: "hi"
+ *   }
+ *  }
+ * }
+ *
+ * type findBaz = ObjectPathContainsKey<typeof myObj, "baz"> // "foo.bar"
+ */
+export type ObjectPathContainsKey<T, Key extends string> = {
+  [K in keyof T]: T[K] extends object
+    ? K extends string
+      ?
+          | `${K}.${ObjectPathContainsKey<T[K], Key>}`
+          | (Key extends keyof T[K] ? K : never)
+      : never
+    : never;
+}[keyof T];
+
+/**
+ * Get the value of an object at a certain path (using dot notation)
+ *
+ * @example
+ * const myObj = {
+ *  foo: {
+ *   bar: {
+ *     baz: "hi"
+ *   }
+ *  }
+ * } as const;
+ *
+ * type baz = ValueAtPath<typeof myObj, "foo.bar.baz"> // "hi"
+ *
+ */
+export type ValueAtObjectPath<
+  T,
+  Path extends string
+> = Path extends `${infer First}.${infer Rest}`
+  ? First extends keyof T
+    ? ValueAtObjectPath<T[First], Rest>
+    : never
+  : Path extends keyof T
+  ? T[Path]
+  : never;
+
+/**
  * Make all properties and nested properties of an object optional
  */
 export type DeepPartial<T> = {
@@ -125,6 +175,13 @@ export type PickKeysByValue<T, Type> = {
  */
 export type Mutable<T> = {
   -readonly [P in keyof T]: T[P];
+};
+
+/**
+ * Make all properties of an object readonly
+ */
+export type Immutable<T> = {
+  readonly [P in keyof T]: T[P];
 };
 
 /**------------------------

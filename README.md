@@ -7,12 +7,16 @@ Types I'm tired of rewriting.
 - [Utility Types](#utility-types)
   - [`ObjectPath<T>`](#objectpatht)
     - [Example](#example)
+  - [`ObjectPathContainsKey<T, Key>`](#objectpathcontainskeyt-key)
+    - [Example](#example-1)
+  - [`ValueAtObjectPath`](#valueatobjectpath)
+    - [Example](#example-2)
   - [`DeepPartial<T>`](#deeppartialt)
   - [`ArrayItem<T>`](#arrayitemt)
   - [`Tuple<T, N>`](#tuplet-n)
-    - [Example](#example-1)
+    - [Example](#example-3)
   - [`VariadicTuple<T>`](#variadictuplet)
-    - [Example](#example-2)
+    - [Example](#example-4)
   - [`Nullable<T>`](#nullablet)
   - [`RequiredProperties<T>`](#requiredpropertiest)
   - [`OmitFunctionKeys<T>`](#omitfunctionkeyst)
@@ -22,17 +26,19 @@ Types I'm tired of rewriting.
     - [`PickArrayKeys<T>`](#pickarraykeyst)
     - [`PickStringKeys<T>`](#pickstringkeyst)
     - [`PickNumberKeys<T>`](#picknumberkeyst)
+  - [`Mutable<T>`](#mutablet)
+  - [`Immutable<T>`](#immutablet)
 - [Syntactic Sugar Types](#syntactic-sugar-types)
   - [`Comparables`](#comparables)
   - [`Callback<T>`](#callbackt)
-    - [Example](#example-3)
-  - [`CallbackWithArgs<T, Args>`](#callbackwithargst-args)
-    - [Example](#example-4)
-  - [`Result<Success, Error>`](#resultsuccess-error)
     - [Example](#example-5)
+  - [`CallbackWithArgs<T, Args>`](#callbackwithargst-args)
     - [Example](#example-6)
-  - [`Action<Type, Payload>`](#actiontype-payload)
+  - [`Result<Success, Error>`](#resultsuccess-error)
     - [Example](#example-7)
+    - [Example](#example-8)
+  - [`Action<Type, Payload>`](#actiontype-payload)
+    - [Example](#example-9)
 
 ## Utility Types
 
@@ -51,6 +57,42 @@ const myObj = {
 };
 
 type MyObjPath = ObjectPath<typeof myObj>; // "foo" | "foo.bar" | "foo.baz"
+```
+
+### `ObjectPathContainsKey<T, Key>`
+
+Get the path keys of an object that **contains** a certain key.
+
+#### Example
+
+```typescript
+const myObj = {
+  foo: {
+    bar: {
+      baz: "hi",
+    },
+  },
+};
+
+type findBazPath = ObjectPathContainsKey<typeof myObj, "baz">; // "foo.bar"
+```
+
+### `ValueAtObjectPath`
+
+Get the value of an object at a certain path (using dot notation)
+
+#### Example
+
+```typescript
+const myObj = {
+  foo: {
+    bar: {
+      baz: "hi",
+    },
+  },
+} as const;
+
+type baz = ValueAtPath<typeof myObj, "foo.bar.baz">; // "hi"
 ```
 
 ### `DeepPartial<T>`
@@ -122,6 +164,14 @@ Pick keys of an object that have string values.
 #### `PickNumberKeys<T>`
 
 Pick keys of an object that have number values.
+
+### `Mutable<T>`
+
+Remove readonly modifier from all properties of an object
+
+### `Immutable<T>`
+
+Make all properties of an object readonly
 
 ## Syntactic Sugar Types
 
