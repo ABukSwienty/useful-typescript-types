@@ -191,7 +191,35 @@ export type Immutable<T> = {
 /**
  * Primitive types that can be compared
  */
-export type Comparables = number | string | undefined | null | BigInteger;
+export type Comparables = number | string | BigInteger;
+
+/**
+ * A JSON object
+ */
+export interface JsonObject {
+  [key: string | number]: JsonValue;
+}
+
+/**
+ * A JSON value
+ */
+export type JsonValue =
+  | string
+  | number
+  | boolean
+  | JsonObject
+  | JsonArray
+  | null;
+
+/**
+ * A JSON array
+ */
+export interface JsonArray extends Array<JsonValue> {}
+
+/**
+ * All primitive types
+ */
+export type Primitives = Comparables | boolean | symbol | null | undefined;
 
 /**
  * A function that returns T or void
