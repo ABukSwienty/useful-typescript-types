@@ -29,6 +29,11 @@ Types I'm tired of rewriting.
   - [`Mutable<T>`](#mutablet)
   - [`Immutable<T>`](#immutablet)
 - [Syntactic Sugar Types](#syntactic-sugar-types)
+  - [`Primitives`](#primitives)
+  - [Json](#json)
+    - [`JsonObject`](#jsonobject)
+    - [`JsonArray`](#jsonarray)
+    - [`Json Value`](#json-value)
   - [`Comparables`](#comparables)
   - [`Callback<T>`](#callbackt)
     - [Example](#example-5)
@@ -174,6 +179,26 @@ Remove readonly modifier from all properties of an object
 Make all properties of an object readonly
 
 ## Syntactic Sugar Types
+
+### `Primitives`
+
+Primitive types. Builds on top of `Comparables`.
+
+### Json
+
+Json types.
+
+#### `JsonObject`
+
+A Json object consists of a `JsonObject` or `JsonArray`, which in turn consist of `JsonValue`s.
+
+#### `JsonArray`
+
+A Json array consists of `JsonValue`s.
+
+#### `Json Value`
+
+A Json value can be a `string`, `number`, `boolean`, `null`, `JsonObject`, or `JsonArray`.
 
 ### `Comparables`
 
