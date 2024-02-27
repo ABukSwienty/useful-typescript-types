@@ -202,7 +202,7 @@ A Json value can be a `string`, `number`, `boolean`, `null`, `JsonObject`, or `J
 
 ### `Comparables`
 
-Primitive types that can be compared, including `number`, `string`, `undefined`, `null`, and `BigInteger`.
+Primitive types that can be compared, including `number`, `string`, and `BigInteger`.
 
 ### `Callback<T>`
 
