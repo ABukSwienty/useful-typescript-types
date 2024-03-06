@@ -184,9 +184,7 @@ export type Immutable<T> = {
   readonly [P in keyof T]: T[P];
 };
 
-/**------------------------
- * SYNTACTIC SUGAR TYPES 
- *------------------------/
+// SYNTACTIC SUGAR TYPES
 
 /**
  * Primitive types that can be compared
